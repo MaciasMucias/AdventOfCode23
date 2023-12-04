@@ -44,15 +44,14 @@ def abstract_map(map_strings: list[str]) -> tuple[dict, dict, list]:
 
         for column, char in enumerate(line):
             if not char.isdigit() and char != ".":
-                symbol_positions.append((row, column))
+                symbol_positions.append((row, column, char))
 
     return number_positions, numbers, symbol_positions
 
 
-def get_surrounding_spaces(coordinates: list) -> list[tuple]:
-    spaces = []
-    for x, y in coordinates:
-        spaces.extend([
+def get_surrounding_spaces(coordinates: tuple) -> list[tuple]:
+    x, y, _ = coordinates
+    return [
             (y-1, x-1),
             (y-1, x),
             (y-1, x+1),
@@ -61,8 +60,7 @@ def get_surrounding_spaces(coordinates: list) -> list[tuple]:
             (y+1, x-1),
             (y+1, x),
             (y+1, x+1),
-        ])
-    return spaces
+        ]
 
 
 def get_parsed_input(path) -> tuple[dict[dict], dict[int], list]:
