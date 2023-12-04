@@ -1,7 +1,4 @@
-def load_input(path):
-    with open(path, "r") as f:
-        return f.readlines()
-
+from utils import load_input
 
 total_calibration_value = 0
 for line in load_input("Inputs\\1"):
