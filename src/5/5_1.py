@@ -1,5 +1,3 @@
-import tqdm
-
 from utils import parse_input, get_destination_from_map
 
 almanac_data = parse_input("../../Inputs/5")
@@ -19,4 +17,3 @@ for value in seeds:
     locations.append(value)
 
 print(min(locations))
-

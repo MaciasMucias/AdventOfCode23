@@ -15,4 +15,3 @@ while source_type != "location":
     source_type = destination_type
 
 print(slices[0][0])
-
