@@ -1,15 +1,6 @@
-from itertools import islice
 from src.utils import load_input
 
 COLORS = ["R", "G", "B"]
-
-
-def paired(iterator):
-    if len(iterator) % 2 != 0:
-        raise RuntimeError("Not pairable")
-
-    arr_range = iter(iterator)
-    return iter(lambda: tuple(islice(arr_range, 2)), ())
 
 
 def get_parsed_input(path):
