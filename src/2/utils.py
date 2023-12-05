@@ -19,7 +19,7 @@ def get_parsed_input(path):
 
 
 def line_to_game(line: str):
-    line = line.replace("\n", "")
+    line = line
     semicolon_index = line.find(":")
     game_id = int(line[5:semicolon_index])
     subsets_long_string = line[semicolon_index + 1:]

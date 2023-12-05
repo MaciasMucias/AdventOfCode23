@@ -36,7 +36,7 @@ def abstract_map(map_strings: list[str]) -> tuple[dict, dict, list]:
     number_id = 0
 
     for row, line in enumerate(map_strings):
-        line = line.replace("\n", "")
+        line = line
         new_positions, new_numbers, updated_number_id = extract_numbers_from_line(line, number_id)
         number_positions[row] = new_positions
         numbers.update(new_numbers)

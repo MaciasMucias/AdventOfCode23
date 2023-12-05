@@ -2,7 +2,7 @@ from src.utils import load_input
 
 
 def parse_game_from_line(line: str) -> tuple[int, set, set]:
-    line = line.replace("\n", "")
+    line = line
     semicolon_index = line.find(":")
     game_id = int(line[5:semicolon_index])
     game_data = line[semicolon_index + 1:]

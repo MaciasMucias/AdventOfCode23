@@ -12,5 +12,4 @@ for game_id, subsets in get_parsed_input("../../Inputs/2"):
     else:
         valid_games.append(game_id)
 
-print(valid_games)
 print(sum(valid_games))

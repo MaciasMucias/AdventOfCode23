@@ -1,7 +1,7 @@
-from ..utils import load_input
+from src.utils import load_input
 
 total_calibration_value = 0
-for line in load_input("../Inputs/1"):
+for line in load_input("../../Inputs/1"):
     value = ""
     for character in line:
         if character.isnumeric():
