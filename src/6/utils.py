@@ -23,3 +23,11 @@ def parse_races_from_input(path) -> tuple[list[int], list[int]]:
     times = list(map(int, raw_times.split()))
     distances = list(map(int, raw_distances.split()))
     return times, distances
+
+
+def parse_races_from_input_bad_kerning(path) -> tuple[int, int]:
+    lines = load_input(path)
+    raw_time, raw_distance = lines
+    raw_time = raw_time[6:].replace(" ", "").replace("\n", "")
+    raw_distance = raw_distance[10:].replace(" ", "").replace("\n", "")
+    return int(raw_time), int(raw_distance)
