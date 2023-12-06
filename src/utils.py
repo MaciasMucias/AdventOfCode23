@@ -1,7 +1,7 @@
 import itertools
 
 
-def load_input(path):
+def load_input(path) -> list[str]:
     with open(path, "r") as f:
         lines = f.readlines()
     no_newline_lines = list(map(lambda x: x.replace("\n", ""), lines))
