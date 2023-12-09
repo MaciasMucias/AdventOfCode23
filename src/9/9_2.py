@@ -4,7 +4,7 @@ reports = parse_reports_from_input("../../Inputs/9")
 
 predicted_sum = 0
 for report in reports:
-    predicted_value = predict_extra_value(report, extra="next")
+    predicted_value = predict_extra_value(report, extra="prev")
     predicted_sum += predicted_value
 
 print(predicted_sum)
