@@ -1,10 +1,8 @@
 from utils import parse_pipes_from_input, get_next_step, find_connected_pipe, move
 
-
 animal_location, pipe_map = parse_pipes_from_input("../../Inputs/10")
-
-
-step = find_connected_pipe(animal_location, pipe_map)
+possible_directions, _ = find_connected_pipe(animal_location, pipe_map)
+step = possible_directions.pop()
 
 current_location = move(animal_location, step)
 
