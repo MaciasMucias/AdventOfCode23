@@ -23,6 +23,26 @@ def is_reflection_with_smudge(line1: list[str], line2: list[str]) -> bool:
     return True
 
 
+def find_reflection_with_smudge(pattern: list[list[str]], old_reflection: None | int = None) -> int | None:
+    for i in range(len(pattern) - 1):
+        smudge_found = False
+        to_start = i + 1
+        to_end = len(pattern) - to_start
+        for j in range(min(to_start, to_end)):
+            if pattern[i-j] != pattern[i+1+j]:
+                if smudge_found:
+                    break
+                if is_reflection_with_smudge(pattern[i-j], pattern[i+1+j]):
+                    smudge_found = True
+                else:
+                    break
+        else:
+            if old_reflection is not None and i == old_reflection-1:
+                continue
+            return to_start
+    return None
+
+
 def parse_input(path: str) -> list[list[list[str]]]:
     lines = load_input(path)
     split_lines = list(map(list, lines))
