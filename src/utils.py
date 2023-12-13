@@ -14,3 +14,7 @@ def paired(iterator):
 
     arr_range = iter(iterator)
     return iter(lambda: tuple(itertools.islice(arr_range, 2)), ())
+
+
+def flip_list_of_lists(list_of_lists: list[list]):
+    return list(zip(*list_of_lists))

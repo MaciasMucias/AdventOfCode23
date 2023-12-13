@@ -1,4 +1,4 @@
-from src.utils import load_input
+from src.utils import load_input, flip_list_of_lists
 
 
 def expand_galaxy(galaxy: list[list[str]]) -> tuple[list[int], list[int]]:
@@ -7,7 +7,7 @@ def expand_galaxy(galaxy: list[list[str]]) -> tuple[list[int], list[int]]:
         if "#" not in line:
             vertical_expansions.append(row)
 
-    rotated_galaxy = list(zip(*galaxy))
+    rotated_galaxy = flip_list_of_lists(galaxy)
     horizontal_expansions = []
     for column, line in enumerate(rotated_galaxy):
         if "#" not in line:
