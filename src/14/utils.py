@@ -1,6 +1,6 @@
 import copy
-
-from src.utils import load_input, list_of_strings_to_list_of_lists
+from functools import cache
+from src.utils import load_input, list_of_strings_to_list_of_lists, columnwise_list
 
 
 def parse_platform_from_input(path):
@@ -8,21 +8,30 @@ def parse_platform_from_input(path):
     return list_of_strings_to_list_of_lists(lines)
 
 
-def slide_rocks(platform: list[list[str]]) -> list[list[str]]:
-    platform_copy = copy.deepcopy(platform)
-    slide_limit = [0] * len(platform[0])
-    for ind_y, row in enumerate(platform_copy):
-        for ind_x, val in enumerate(row):
-            if val == "O" and slide_limit[ind_x] <= ind_y:
-                platform_copy[ind_y][ind_x] = "."
-                platform_copy[slide_limit[ind_x]][ind_x] = "O"
-                slide_limit[ind_x] += 1
-            elif val == "#":
-                slide_limit[ind_x] = ind_y + 1
-    return platform_copy
+@cache
+def slide_rocks(platform: tuple[tuple[str]]) -> tuple[tuple[str]]:
+    columnwise_platform = columnwise_list(platform)
+    platform_after_sliding = []
+    for column in columnwise_platform:
+        column_after_slide = []
+        last_ind = -1
+        sliding_rocks_found = 0
+        ind = 0
+        for ind, val in enumerate(column):
+            if val == "#":
+                tiles_from_last_ind = ind - last_ind - 1
+                column_after_slide.extend(["O"] * sliding_rocks_found + ["."] * (tiles_from_last_ind - sliding_rocks_found) + ["#"])
+                last_ind = ind
+                sliding_rocks_found = 0
+            elif val == "O":
+                sliding_rocks_found += 1
+        tiles_from_last_ind = ind - last_ind
+        column_after_slide.extend(["O"] * sliding_rocks_found + ["."] * (tiles_from_last_ind - sliding_rocks_found))
+        platform_after_sliding.append(tuple(column_after_slide))
+    return columnwise_list(tuple(platform_after_sliding))
 
 
-def calculate_load(platform: list[list[str]]):
+def calculate_load(platform: tuple[tuple[str], ...]):
     total_load = 0
     for ind_y, row in enumerate(platform):
         rounded_rocks_in_row = row.count("O")
@@ -30,3 +39,7 @@ def calculate_load(platform: list[list[str]]):
         total_load += load
 
     return total_load
+
+
+def rotate_tuple_90(to_rotate: tuple[tuple, ...]) -> tuple[tuple, ...]:
+    return tuple(map(tuple, zip(*reversed(to_rotate))))

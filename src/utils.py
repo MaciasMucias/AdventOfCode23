@@ -16,7 +16,7 @@ def paired(iterator):
     return iter(lambda: tuple(itertools.islice(arr_range, 2)), ())
 
 
-def flip_list_of_lists(list_of_lists: list[list]):
+def columnwise_list(list_of_lists: list[list] | tuple[tuple, ...]):
     return list(zip(*list_of_lists))
 
 
