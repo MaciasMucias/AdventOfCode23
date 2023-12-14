@@ -1,4 +1,4 @@
-from src.utils import load_input
+from src.utils import load_input, list_of_strings_to_list_of_lists
 
 
 def find_reflection(pattern: list[list[str]]) -> int | None:
@@ -45,7 +45,7 @@ def find_reflection_with_smudge(pattern: list[list[str]], old_reflection: None |
 
 def parse_input(path: str) -> list[list[list[str]]]:
     lines = load_input(path)
-    split_lines = list(map(list, lines))
+    split_lines = list_of_strings_to_list_of_lists(lines)
     patterns = []
     pattern = []
     for line in split_lines:

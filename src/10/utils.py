@@ -1,4 +1,4 @@
-from src.utils import load_input
+from src.utils import load_input, list_of_strings_to_list_of_lists
 
 
 def move(location: tuple[int, int], direction: tuple[int, int]) -> tuple[int, int]:
@@ -59,7 +59,7 @@ def parse_pipes_from_input(path) -> tuple[tuple[int, int], list[list[str]]]:
         if "S" in line:
             animal_coordinates = (ind, line.index("S"))
 
-    return animal_coordinates, list(map(list, lines))
+    return animal_coordinates, list_of_strings_to_list_of_lists(lines)
 
 
 def get_next_step(last_move: tuple[int, int], tile: str) -> tuple[int, int]:

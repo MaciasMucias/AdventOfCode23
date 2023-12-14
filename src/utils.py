@@ -18,3 +18,7 @@ def paired(iterator):
 
 def flip_list_of_lists(list_of_lists: list[list]):
     return list(zip(*list_of_lists))
+
+
+def list_of_strings_to_list_of_lists(list_of_strings: list[str]) -> list[list[str]]:
+    return list(map(list, list_of_strings))

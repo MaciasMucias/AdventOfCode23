@@ -1,4 +1,4 @@
-from src.utils import load_input, flip_list_of_lists
+from src.utils import load_input, flip_list_of_lists, list_of_strings_to_list_of_lists
 
 
 def expand_galaxy(galaxy: list[list[str]]) -> tuple[list[int], list[int]]:
@@ -31,7 +31,7 @@ def locate_stars(galaxy: list[list[str]]) -> dict[int, tuple[int, int]]:
 
 def parse_galaxy_from_input(path) -> tuple[dict[int, tuple[int, int]], tuple[list[int], list[int]]]:
     lines = load_input(path)
-    galaxy = list(map(list, lines))
+    galaxy = list_of_strings_to_list_of_lists(lines)
     stars = locate_stars(galaxy)
     vertical_expansions, horizontal_expansions = expand_galaxy(galaxy)
 
