@@ -1,4 +1,10 @@
 import itertools
+from collections import namedtuple
+
+
+Direction = namedtuple("Direction", ["dy", "dx"])
+Point = namedtuple("Point", ["y", "x"])
+Vector = namedtuple("Move", ["point", "direction"])
 
 
 def load_input(path) -> list[str]:
@@ -22,3 +28,9 @@ def columnwise_list(list_of_lists: list[list] | tuple[tuple, ...]):
 
 def list_of_strings_to_list_of_lists(list_of_strings: list[str]) -> list[list[str]]:
     return list(map(list, list_of_strings))
+
+
+def move(location: Point, direction: Direction) -> Point:
+    return Point(location[0] + direction[0], location[1] + direction[1])
+
+

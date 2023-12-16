@@ -1,8 +1,4 @@
-from src.utils import load_input, list_of_strings_to_list_of_lists
-
-
-def move(location: tuple[int, int], direction: tuple[int, int]) -> tuple[int, int]:
-    return location[0] + direction[0], location[1] + direction[1]
+from src.utils import load_input, list_of_strings_to_list_of_lists, move
 
 
 def get_pipe_directions(pipe_element: str) -> set[tuple[int, int]]:

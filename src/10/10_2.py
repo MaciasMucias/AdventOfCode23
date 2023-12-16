@@ -1,8 +1,9 @@
 import itertools
 import collections
 
-from utils import parse_pipes_from_input, get_next_step, find_connected_pipe, move, connect_bends, get_pipe_directions, \
+from utils import parse_pipes_from_input, get_next_step, find_connected_pipe, connect_bends, get_pipe_directions, \
     mark_tile
+from src.utils import move
 
 animal_location, pipe_map = parse_pipes_from_input("../../Inputs/10")
 possible_directions, pipe_shape = find_connected_pipe(animal_location, pipe_map)

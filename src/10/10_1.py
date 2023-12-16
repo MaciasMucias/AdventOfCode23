@@ -1,4 +1,5 @@
-from utils import parse_pipes_from_input, get_next_step, find_connected_pipe, move
+from utils import parse_pipes_from_input, get_next_step, find_connected_pipe
+from src.utils import move
 
 animal_location, pipe_map = parse_pipes_from_input("../../Inputs/10")
 possible_directions, _ = find_connected_pipe(animal_location, pipe_map)
