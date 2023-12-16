@@ -5,7 +5,8 @@ from src.utils import load_input, list_of_strings_to_list_of_lists, columnwise_l
 
 def parse_platform_from_input(path):
     lines = load_input(path)
-    return list_of_strings_to_list_of_lists(lines)
+    platform = list_of_strings_to_list_of_lists(lines)
+    return tuple(map(tuple, platform))
 
 
 @cache
@@ -20,7 +21,8 @@ def slide_rocks(platform: tuple[tuple[str]]) -> tuple[tuple[str]]:
         for ind, val in enumerate(column):
             if val == "#":
                 tiles_from_last_ind = ind - last_ind - 1
-                column_after_slide.extend(["O"] * sliding_rocks_found + ["."] * (tiles_from_last_ind - sliding_rocks_found) + ["#"])
+                column_after_slide.extend(
+                    ["O"] * sliding_rocks_found + ["."] * (tiles_from_last_ind - sliding_rocks_found) + ["#"])
                 last_ind = ind
                 sliding_rocks_found = 0
             elif val == "O":
@@ -43,3 +45,10 @@ def calculate_load(platform: tuple[tuple[str], ...]):
 
 def rotate_tuple_90(to_rotate: tuple[tuple, ...]) -> tuple[tuple, ...]:
     return tuple(map(tuple, zip(*reversed(to_rotate))))
+
+
+def full_cycle(platform):
+    for _ in range(4):
+        platform = slide_rocks(platform)
+        platform = rotate_tuple_90(platform)
+    return platform

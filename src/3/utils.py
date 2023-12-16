@@ -1,7 +1,7 @@
 from src.utils import load_input
 
 
-def extract_numbers_from_line(line: str, number_id):
+def extract_numbers_from_line(line: str, number_id: int) -> tuple[dict[int, int], dict[int, int], int]:
     padded_line = line + "."
 
     number_positions = {}
@@ -28,7 +28,7 @@ def extract_numbers_from_line(line: str, number_id):
     return number_positions, numbers, number_id
 
 
-def abstract_map(map_strings: list[str]) -> tuple[dict, dict, list]:
+def abstract_map(map_strings: list[str]) -> tuple[dict[int, dict[int, int]], dict[int, int], list[tuple[int, int, str]]]:
     number_positions = {}
     numbers = {}
     symbol_positions = []
@@ -63,6 +63,6 @@ def get_surrounding_spaces(coordinates: tuple) -> list[tuple]:
         ]
 
 
-def get_parsed_input(path) -> tuple[dict[dict], dict[int], list]:
+def get_parsed_input(path) -> tuple[dict[int, dict[int, int]], dict[int, int], list[tuple[int, int, str]]]:
     lines = load_input(path)
     return abstract_map(lines)

@@ -14,10 +14,12 @@ def get_differences(values: list[int]) -> list[int]:
 
 
 def helper_subtract(x, y):
-    return x-y
+    return x - y
+
 
 def helper_sum(x, y):
-    return x+y
+    return x + y
+
 
 def predict_extra_value(values: list[int], *, extra: Literal["prev", "next"]) -> int:
     if extra not in ["prev", "next"]:

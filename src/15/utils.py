@@ -12,4 +12,3 @@ def custom_hash(string: str) -> int:
         value *= 17
         value %= 256
     return value
-

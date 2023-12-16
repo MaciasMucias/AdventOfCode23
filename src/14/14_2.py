@@ -1,15 +1,7 @@
-from utils import parse_platform_from_input, slide_rocks, calculate_load, rotate_tuple_90
-
-
-def full_cycle(platform):
-    for _ in range(4):
-        platform = slide_rocks(platform)
-        platform = rotate_tuple_90(platform)
-    return platform
+from utils import parse_platform_from_input, calculate_load, full_cycle
 
 
 platform = parse_platform_from_input("../../Inputs/14")
-platform = tuple(map(tuple, platform))
 before_last_spin = platform
 
 cache = {}

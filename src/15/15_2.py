@@ -25,5 +25,3 @@ for ind, box in enumerate(boxes, 1):
         total_focusing_power += ind * pos * lens
 
 print(total_focusing_power)
-
-
