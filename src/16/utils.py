@@ -1,31 +1,22 @@
-from abc import ABC, ABCMeta, abstractmethod
-
-from src.utils import load_input, list_of_strings_to_list_of_lists, Direction
-
+from abc import ABC, abstractmethod
+from src.utils import load_input, list_of_strings_to_list_of_lists, move, Vector, Direction, Directions
 
 
-DIRECTIONS: dict[str, Direction] = {
-    "LEFT": Direction(0, -1),
-    "UP": Direction(-1, 0),
-    "RIGHT": Direction(0, 1),
-    "DOWN": Direction(1, 0)
-}
-
-HORIZONTAL: set[Direction] = {DIRECTIONS["LEFT"], DIRECTIONS["RIGHT"]}
-VERTICAL: set[Direction] = {DIRECTIONS["UP"], DIRECTIONS["DOWN"]}
+HORIZONTAL: set[Direction] = {Directions.LEFT, Directions.RIGHT}
+VERTICAL: set[Direction] = {Directions.UP, Directions.DOWN}
 
 LEFT_REFLECTION: dict[Direction, Direction] = {
-    DIRECTIONS["LEFT"]: DIRECTIONS["UP"],
-    DIRECTIONS["DOWN"]: DIRECTIONS["RIGHT"],
-    DIRECTIONS["RIGHT"]: DIRECTIONS["DOWN"],
-    DIRECTIONS["UP"]: DIRECTIONS["LEFT"],
+    Directions.LEFT: Directions.UP,
+    Directions.DOWN: Directions.RIGHT,
+    Directions.RIGHT: Directions.DOWN,
+    Directions.UP: Directions.LEFT,
 }
 
 RIGHT_REFLECTION: dict[Direction, Direction] = {
-    DIRECTIONS["LEFT"]: DIRECTIONS["DOWN"],
-    DIRECTIONS["DOWN"]: DIRECTIONS["LEFT"],
-    DIRECTIONS["RIGHT"]: DIRECTIONS["UP"],
-    DIRECTIONS["UP"]: DIRECTIONS["RIGHT"],
+    Directions.LEFT: Directions.DOWN,
+    Directions.DOWN: Directions.LEFT,
+    Directions.RIGHT: Directions.UP,
+    Directions.UP: Directions.RIGHT,
 }
 
 
@@ -140,4 +131,28 @@ def count_all_energized_elements(element_map: list[list[Element]]) -> int:
         for element in row:
             if element.energized:
                 count += 1
+            element.energized = False
+            element.visited_going_from = set()
     return count
+
+
+def calculate_energized_elements(map_of_elements, starting_vector):
+    h, w = len(map_of_elements), len(map_of_elements[0])
+    queue = [starting_vector]
+
+
+    while queue:
+        vector = queue.pop(0)
+        next_point = move(vector.point, vector.direction)
+
+        if not (0 <= next_point.y < h and 0 <= next_point.x < w):
+            continue
+
+        element = map_of_elements[next_point.y][next_point.x]
+
+        propagated_light = element.propagate_light(vector.direction)
+
+        for direction in propagated_light:
+            queue.append(Vector(next_point, direction))
+
+    return count_all_energized_elements(map_of_elements)
