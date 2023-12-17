@@ -140,7 +140,6 @@ def calculate_energized_elements(map_of_elements, starting_vector):
     h, w = len(map_of_elements), len(map_of_elements[0])
     queue = [starting_vector]
 
-
     while queue:
         vector = queue.pop(0)
         next_point = move(vector.point, vector.direction)

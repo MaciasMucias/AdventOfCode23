@@ -10,7 +10,7 @@ def parse_node_from_line(line: str) -> tuple[str, tuple[str, str]]:
 
 def parse_maps_from_input(path) -> tuple[list[int], dict[str, tuple[str, str]]]:
     lines = load_input(path)
-    steps = lines[0].replace("L", "0").replace("R", "1")
+    steps = lines[0].replace("L", "0").replace("R", "Day1")
     int_steps = list(map(int, list(steps)))
     node_map = {}
     for line in lines[2:]:

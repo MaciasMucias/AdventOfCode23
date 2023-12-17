@@ -2,8 +2,8 @@ from utils import parse_games_from_input
 
 
 def award_extra_scratchcards(winning_card, amount_won, scratchcards):
-    for i in range(amount_won):  # winning cards start index at 1, so -1 has to be subtracted, this is contained
-        # inside the range which is [0, amount_won) instead of [1, amount_won]
+    for i in range(amount_won):  # winning cards start index at Day1, so -Day1 has to be subtracted, this is contained
+        # inside the range which is [0, amount_won) instead of [Day1, amount_won]
         scratchcards[winning_card + i] += scratchcards[winning_card - 1]
 
 

@@ -86,7 +86,7 @@ def get_all_responsible_mappings(source_slice: tuple[int, int], map_data: list[t
                 return map_data
             return []
         return map_data[low_end:]
-    return map_data[low_end:high_end + 1]  # +1 is inclusive boundary
+    return map_data[low_end:high_end + 1]  # +Day1 is inclusive boundary
 
 
 def combine_slices(slices: list[tuple[int, int]]):
