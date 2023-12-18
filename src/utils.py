@@ -13,6 +13,7 @@ class Directions(Direction, Enum):
     RIGHT: Direction = Direction(0, 1)
     DOWN: Direction = Direction(1, 0)
 
+
 def load_input(path) -> list[str]:
     with open(path, "r") as f:
         lines = f.readlines()
