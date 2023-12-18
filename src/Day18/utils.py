@@ -4,7 +4,11 @@ DIRECTIONS = {
     "R": Directions.RIGHT,
     "L": Directions.LEFT,
     "U": Directions.UP,
-    "D": Directions.DOWN
+    "D": Directions.DOWN,
+    "0": Directions.RIGHT,
+    "1": Directions.DOWN,
+    "2": Directions.LEFT,
+    "3": Directions.UP
 }
 
 
@@ -17,10 +21,25 @@ def parse_digging_instructions_from_input(path) -> list[tuple[Direction, int, st
     return instructions
 
 
+def convert_color_to_instruction(instruction: tuple[Direction, int, str]) -> tuple[Direction, int, str]:
+    _, _, color = instruction
+    rgb_hex = color[2:-1]
+    return DIRECTIONS[rgb_hex[-1]], int(rgb_hex[:-1], 16), color
+
 def convert_instruction_to_vertex(instruction: tuple[Direction, int, str], previous_vertex) -> tuple[Point, str]:
     direction, length, color = instruction
     vertex = previous_vertex[0]
     return Point(vertex.y + direction.dy * length, vertex.x + direction.dx * length), color
+
+
+def convert_color_to_vertex(instruction: tuple[Direction, int, str], previous_vertex) -> tuple[Point, str]:
+    _, _, color = instruction
+    rgb = color[2:-1]
+    length = int(rgb[:-1], 16)
+    direction = DIRECTIONS[rgb[-1]]
+    vertex = previous_vertex[0]
+    return Point(vertex.y + direction.dy * length, vertex.x + direction.dx * length), color
+
 
 
 def shoelace_formula(vertices):
